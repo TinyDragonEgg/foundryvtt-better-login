@@ -35,6 +35,7 @@ jobs:
           zip -r better-login-screen.zip \
             module.json \
             main.mjs \
+            la.json \
             styles/ \
             --exclude "*.DS_Store"
 
