@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Stamp module.json with version and download URL
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          DOWNLOAD="https://github.com/TinyDragonEgg/foundryvtt-better-login/releases/download/${GITHUB_REF_NAME}/better-login-screen.zip"
+          jq \
+            --arg v "$VERSION" \
+            --arg d "$DOWNLOAD" \
+            '.version = $v | .download = $d' \
+            module.json > module.tmp.json
+          mv module.tmp.json module.json
+
+      - name: Build zip
+        run: |
+          zip -r better-login-screen.zip \
+            module.json \
+            main.mjs \
+            styles/ \
+            --exclude "*.DS_Store"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            better-login-screen.zip
+            module.json
+          generate_release_notes: true

@@ -1,0 +1,20 @@
+{
+  "id": "better-login-screen",
+  "title": "Better Login Screen",
+  "description": "Replaces the user dropdown with a clickable card grid and adds remember-me password saving.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "TinyDragonEgg"
+    }
+  ],
+  "esmodules": ["main.mjs"],
+  "styles": ["styles/login.css"],
+  "url": "https://github.com/TinyDragonEgg/foundryvtt-better-login",
+  "manifest": "https://github.com/TinyDragonEgg/foundryvtt-better-login/releases/latest/download/module.json",
+  "download": ""
+}
