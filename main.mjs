@@ -1,6 +1,12 @@
 const MODULE_ID = "better-login-screen";
 const PWD_KEY = `${MODULE_ID}.passwords`;
 
+console.log(`${MODULE_ID} | script loaded`);
+
+Hooks.on("renderJoinGameForm", (_app, html) => {
+  console.log(`${MODULE_ID} | renderJoinGameForm fired`, html);
+});
+
 function loadPasswords() {
   try {
     return JSON.parse(localStorage.getItem(PWD_KEY) ?? "{}");

@@ -12,6 +12,15 @@
       "name": "TinyDragonEgg"
     }
   ],
+  "coreTranslation": true,
+  "languages": [
+    {
+      "lang": "la",
+      "name": "Latin",
+      "path": "la.json",
+      "flags": {}
+    }
+  ],
   "esmodules": ["main.mjs"],
   "styles": ["styles/login.css"],
   "url": "https://github.com/TinyDragonEgg/foundryvtt-better-login",
